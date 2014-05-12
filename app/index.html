@@ -25,9 +25,8 @@
 
     <!-- Add your site or application content here -->
 
-    <div ng-include="'views/nav.html'">
+    <div ng-include="'views/nav.html'"></div>
     <div class="container" ng-view=""></div>
-    <h1>hello</h1>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -65,11 +64,19 @@
         <script src="scripts/controllers/posts.js"></script>
         <script src="scripts/controllers/postview.js"></script>
 	<script src="scripts/controllers/nav.js"></script>
+	<script src="scripts/controllers/auth.js"></script>
 	<script src="scripts/services/posts.js"></script>
+	<script src="scripts/services/auth.js"></script>
 	<script src="scripts/filters/url.js"></script>
+	<script src="scripts/filters/reverseArray.js"></script>
+
+
+
 	<!-- endbuild -->
 </body>
 </html>
+
+
 
 
 

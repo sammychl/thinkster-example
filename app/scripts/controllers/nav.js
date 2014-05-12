@@ -1,19 +1,6 @@
 'use strict';
-
-// app.controller('NavCtrl', ['$scope', '$location', 'Post', function($scope, $location, Post) {
-//     $scope.post = {url: 'http://', title: ''};
-//     $scope.submitPost = function() {
-// 	Post.create($scope.post).then(function(ref) {
-// 	    $location.path('/posts/' + ref.name());
-// 	    $scope.post = {url: 'http://', title: ''}
-// 	})
-//     }
-// }])
-
-
-
  
-app.controller('NavCtrl', ['$scope', '$location', 'Post', function ($scope, $location, Post) {
+app.controller('NavCtrl', ['$scope', '$location', 'Post', 'Auth', function ($scope, $location, Post, Auth) {
     $scope.post = {url: 'http://', title: 'put title here'};
  
     $scope.submitPost = function () {
@@ -23,4 +10,8 @@ app.controller('NavCtrl', ['$scope', '$location', 'Post', function ($scope, $loc
       });
     };
  
+    $scope.logout = function() {
+	Auth.logout();
+    }
+    
 }]);
