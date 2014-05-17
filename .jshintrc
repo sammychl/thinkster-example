@@ -18,9 +18,10 @@
   "strict": true,
   "trailing": true,
   "smarttabs": true,
+  "indent": false,
   "globals": {
-    "angular": false
-  },
-  "app":false	,
-  "Firebase":false
+    "angular": false,
+    "app": false,
+    "Firebase":false
+  }
 }

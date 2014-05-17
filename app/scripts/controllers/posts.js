@@ -1,29 +1,38 @@
 'use strict';
 
-// app.controller('PostsCtrl', ['$scope', 'Post', function($scope, Post) {
-    
-//     $scope.posts = Post.all;
-//     $scope.post = {url:'http://', title:''};
-//     $scope.deletePost = function(postId) {
-// 	Post.delete(postId)
-//     }
-// }
-// ]);
+app.controller('PostsCtrl', function ($scope, Post, $location) {
+	if ($location.path() ==='/') {
+		$scope.posts = Post.all;
+	}
+	
+	$scope.post = {url: 'http://', 'title': ''};
+	
+	$scope.deletePost = function (postId) {
+		Post.delete(postId);
+	};
 
+	$scope.upVotePost = function(postId, upVoted) {
+		if (upVoted) {
+			Post.clearVote(postId, upVoted);
+		} else {
+			Post.upVote(postId);
+		}
+	};
+	
+	$scope.downVotePost = function(postId, downVoted) {
+		if (downVoted) {
+			Post.clearVote(postId, !downVoted);
+		} else {
+			Post.downVote(postId);
+		}
+	};
 
-app.controller('PostsCtrl', function ($scope, Post) {
-  $scope.posts = Post.all;
- 
-  $scope.post = {url: 'http://', 'title': ''};
- 
-  $scope.submitPost = function () {
-    Post.create($scope.post).then(function () {
-      $scope.post = {url: 'http://', 'title': ''};
-    });
-  };
- 
-  $scope.deletePost = function (postId) {
-    Post.delete(postId);
-  };
- 
+	$scope.upVoted = function(post) {
+		return Post.upVoted(post);
+	};
+
+	$scope.downVoted = function(post) {
+		return Post.downVoted(post);
+	};
+	
 });
