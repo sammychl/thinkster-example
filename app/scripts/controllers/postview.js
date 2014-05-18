@@ -34,4 +34,30 @@ app.controller('PostViewCtrl', ['$scope', '$routeParams', 'Post', function($scop
 		return Post.downVoted($scope.post);
 	};
 
+
+	/********************
+	 **subscribe section**
+	 ********************/
+
+	$scope.subscribe = function(postId, subscribed) {
+		if (!subscribed) {
+			Post.subscribe(postId);
+		}
+	};
+
+	$scope.unsubscribe = function(postId, subscribed) {
+		if (subscribed) {
+			Post.unsubscribe(postId);
+		}
+	};
+
+	$scope.subscribed = function(postId) {
+		return Post.subscribed(postId);
+	};
+
+
+
+
+
+
 }]);

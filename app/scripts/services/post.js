@@ -35,6 +35,9 @@ app.factory('Post', ['$firebase','FIREBASE_URL', 'User', function ($firebase, FI
 				});
 			}
 		},
+		/*********************
+		 **commenting section
+		 *********************/
 		addComment: function(postId, comment) {
 			if (User.signedIn()) {
 				var user = User.getCurrent();
@@ -56,6 +59,11 @@ app.factory('Post', ['$firebase','FIREBASE_URL', 'User', function ($firebase, FI
 				});
 			}
 		},
+
+		/*********************
+		 **voting section
+		 *********************/
+
 		upVote: function(postId) {
 			if(User.signedIn()) {
 				var user = User.getCurrent();
@@ -118,13 +126,53 @@ app.factory('Post', ['$firebase','FIREBASE_URL', 'User', function ($firebase, FI
 		upVoted: function(post) {
 			if (User.signedIn() && post.upvotes) {
 				return post.upvotes.hasOwnProperty(User.getCurrent().username);
+			} else {
+			return false;
 			}
 		},
 		downVoted: function(post) {
 			if (User.signedIn() && post.downvotes) {
 				return post.downvotes.hasOwnProperty(User.getCurrent().username);
+			} else {
+			return false;
+			}
+		},
+		/*********************
+		 **subscribing section
+		 *********************/
+		subscribe: function(postId) {
+			if (User.signedIn()) {
+				var user = User.getCurrent();
+				posts.$child(postId).$child('subscribers').$child(user.username).$set({
+					subscribeDate: Firebase.ServerValue.TIMESTAMP
+				}).then(function(){
+					user.$child('subscribed').$child(postId).$set({
+						subscribeDate: Firebase.ServerValue.TIMESTAMP
+					});
+				});
+			}
+			
+		},
+		unsubscribe: function(postId) {
+			console.log('Post Service Unsubscribing');
+			if (User.signedIn()) {
+				var user = User.getCurrent();
+				posts.$child(postId).$child('subscribers').$remove(user.username).then(function() {
+					user.$child('subscribed').$remove(postId);
+				});
+			}
+		},
+		
+		subscribed: function(postId) {
+			var user = User.getCurrent();
+
+			if (User.signedIn() && user.subscribed) {
+				return user.subscribed[postId];
+			} else {
+			return false;
 			}
 		}
+
 		
 	    
 	    };

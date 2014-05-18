@@ -10,17 +10,22 @@
 
     <!-- info -->
     <div class="col-md-9 col-xs-11">
-      <div class="info">
+      <div>
+	<span class="info">{{post.title}}</span>
 	<a href="http://{{post.url}}">
-	  {{post.title}}
 	  <span class="url">({{post.url | hostnameFromUrl}})</span>
-	</a><span>{{post.description}}</span>
+	</a>
+	<span>{{post.description}}</span>
       </div>
+      
+
       <div>
 	<span>submitted by <a href="#users/{{post.owner}}">{{post.ownerDisplayName}}</a></span>
       </div>
     </div>
     <div class="col-md-2">
+      <button type="button" class="pull-right btn btn-default" ng-show="!subscribed(postId) && signedIn()" ng-click="subscribe(postId, subscribed(postId))">Join in</button>
+      <button type="button" class="pull-right btn btn-default" ng-show="subscribed(postId) && signedIn()" ng-click="unsubscribe(postId, subscribed(postId))">Unsubscribe</button>
     </div>
   </div>
 

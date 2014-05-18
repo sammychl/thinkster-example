@@ -1,11 +1,11 @@
 'use strict';
 
-app.controller('PostsCtrl', function ($scope, Post, $location) {
+app.controller('PostsCtrl', function ($scope, Post, $location, User) {
 	if ($location.path() ==='/') {
 		$scope.posts = Post.all;
-	}
+	} 
 	
-	$scope.post = {url: 'http://', 'title': ''};
+	$scope.post = {url: 'http://', 'title': '', description:''};
 	
 	$scope.deletePost = function (postId) {
 		Post.delete(postId);
@@ -33,6 +33,26 @@ app.controller('PostsCtrl', function ($scope, Post, $location) {
 
 	$scope.downVoted = function(post) {
 		return Post.downVoted(post);
+	};
+
+	/********************
+	 **subscribe section**
+	 ********************/
+
+	$scope.subscribe = function(postId, subscribed) {
+		if (!subscribed) {
+			Post.subscribe(postId);
+		}
+	};
+
+	$scope.unsubscribe = function(postId, subscribed) {
+		if (subscribed) {
+			Post.unsubscribe(postId);
+		}
+	};
+
+	$scope.subscribed = function(postId) {
+		return Post.subscribed(postId);
 	};
 	
 });

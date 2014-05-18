@@ -22,6 +22,7 @@
 
     <ul class="nav nav-tabs">
       <li class="active"><a data-target="#submissions" data-toggle="tab">Submissions</a></li>
+      <li><a data-target="#subscribed" data-toggle="tab">Subscribed</a></li>
       <li><a data-target="#comments" data-toggle="tab">Comments</a></li>
     </ul>
 
@@ -31,8 +32,13 @@
 
 
 <div class="tab-content">
+
   <!-- submissions tab -->
   <div ng-include="'views/posts.html'" class="tab-pane active" id="submissions" ng-controller="PostsCtrl"></div>
+
+  <!-- subscribed tab -->
+  <div ng-include="'views/posts.html'" class="tab-pane active" id="submissions" ng-controller="PostsCtrl"></div>
+
   <!-- comments tab -->
   <div class="container posts-page tab-pane" id="comments">
     <div class="post row" ng-repeat="(commentId, comment) in comments">
@@ -50,6 +56,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 
