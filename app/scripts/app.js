@@ -8,7 +8,7 @@ var app = angular.module('angNewsApp', [
 	'ngRoute',
 	'firebase'
 ])
-	    .constant('FIREBASE_URL', 'https://scorching-fire-3130.firebaseio.com/');
+	    .constant('FIREBASE_URL', https://LINK TO YOUR FIREBASE ACCOUNT HERE);
 
 app.config(function ($routeProvider) {
 	$routeProvider
